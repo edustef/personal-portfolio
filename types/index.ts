@@ -62,3 +62,35 @@ export interface SettingsPayload {
   menuItems?: MenuItem[]
   ogImage?: Image
 }
+
+export interface Job {
+  id: string
+  company: string
+  description: string
+  start: string
+  end?: string
+  position: string
+  skills: Skill[]
+}
+
+export default interface Profile {
+  id: string
+  name: string
+  motto: string
+  email: string
+  picture: string
+  about: string
+  workPreference: string
+}
+
+export interface Project {
+  id: string
+  name: string
+  description: string
+  duration: number
+}
+
+export interface Skill {
+  id: string
+  name: string
+}
