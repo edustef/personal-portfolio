@@ -10,21 +10,10 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
-      name: 'title',
+      name: 'name',
       description: 'This field is the title of your project.',
-      title: 'Title',
+      title: 'Name',
       type: 'string',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        isUnique: (value, context) => context.defaultIsUnique(value, context),
-      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -70,23 +59,28 @@ export default defineType({
     defineField({
       name: 'duration',
       title: 'Duration',
-      type: 'duration',
-    }),
-    defineField({
-      name: 'client',
-      title: 'Client',
       type: 'string',
     }),
     defineField({
-      name: 'site',
-      title: 'Site',
+      name: 'sourceLink',
+      title: 'Source Link',
       type: 'url',
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
+      name: 'websiteLink',
+      title: 'Website Site',
+      type: 'url',
+    }),
+    defineField({
+      name: 'skills',
+      title: 'Skills',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'skill' }],
+        },
+      ],
       options: {
         layout: 'tags',
       },

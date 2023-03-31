@@ -5,8 +5,8 @@
 // https://www.sanity.io/docs/structure-builder-reference
 
 import { DefaultDocumentNodeResolver } from 'sanity/desk'
+import { PREVIEWABLE_DOCUMENT_TYPES } from 'schemas'
 
-import { PREVIEWABLE_DOCUMENT_TYPES } from '../../sanity.config'
 import { PreviewPane } from './PreviewPane'
 
 export const previewDocumentNode = ({

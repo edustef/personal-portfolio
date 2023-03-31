@@ -10,11 +10,9 @@ import { pageStructure, singletonPlugin } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import { documentsSchemas, objectsSchemas, PREVIEWABLE_DOCUMENT_TYPES, singletonsSchemas } from 'schemas'
 import page from 'schemas/documents/page'
 import project from 'schemas/documents/project'
-import duration from 'schemas/objects/duration'
-import milestone from 'schemas/objects/milestone'
-import timeline from 'schemas/objects/timeline'
 import home from 'schemas/singletons/home'
 import settings from 'schemas/singletons/settings'
 
@@ -22,11 +20,6 @@ const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
   'Next.js Personal Website with Sanity.io'
 
-export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
-  home.name,
-  page.name,
-  project.name,
-]
 
 export default defineConfig({
   basePath: '/studio',
@@ -35,27 +28,16 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [
-      // Singletons
-      home,
-      settings,
-      // Documents
-      duration,
-      page,
-      project,
-      // Objects
-      milestone,
-      timeline,
-    ],
+    types: [...documentsSchemas, ...objectsSchemas, ...singletonsSchemas],
   },
   plugins: [
     deskTool({
-      structure: pageStructure([home, settings]),
+      structure: pageStructure(singletonsSchemas),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin([home.name, settings.name]),
+    singletonPlugin(singletonsSchemas.map((schema) => schema.name)),
     // Add the "Open preview" action
     productionUrl({
       apiVersion,
