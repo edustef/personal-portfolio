@@ -2,6 +2,7 @@ import job from 'schemas/documents/job'
 import page from 'schemas/documents/page'
 import project from 'schemas/documents/project'
 import skill from 'schemas/documents/skill'
+import button from 'schemas/objects/button'
 import duration from 'schemas/objects/duration'
 import milestone from 'schemas/objects/milestone'
 import timeline from 'schemas/objects/timeline'
@@ -12,7 +13,7 @@ export const documentsSchemas = [page, project, skill, job]
 
 export const singletonsSchemas = [home, settings]
 
-export const objectsSchemas = [milestone, timeline, duration]
+export const objectsSchemas = [milestone, timeline, duration, button]
 
 export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
   home.name,
