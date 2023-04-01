@@ -1,5 +1,6 @@
 import { previewData } from 'next/headers'
 
 export function getPreviewToken(): string | undefined {
-  return (previewData() as { token?: string | null })?.token
+  const preview = previewData() as { token: string } | false
+  return preview ? preview.token : undefined
 }
