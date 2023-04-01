@@ -9,7 +9,7 @@ import { Construction, Languages } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-export default function Navbar({}) {
+export function Navbar({}) {
   return (
     <nav className="flex items-center gap-4">
       {/* <Logo /> */}

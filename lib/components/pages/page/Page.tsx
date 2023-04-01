@@ -1,6 +1,5 @@
 import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
-import { Header } from 'components/shared/Header'
-import ScrollUp from 'lib/components/shared/ScrollUp'
+import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
 import type { PagePayload } from 'types'
 
 export function Page({ data }: { data: PagePayload }) {
@@ -11,7 +10,6 @@ export function Page({ data }: { data: PagePayload }) {
     <div>
       <div className="mb-14">
         {/* Header */}
-        <Header title={title} description={overview} />
 
         {/* Body */}
         {body && (
@@ -22,7 +20,7 @@ export function Page({ data }: { data: PagePayload }) {
         )}
 
         {/* Workaround: scroll to top on route change */}
-        <ScrollUp />
+        <ScrollUpWorkaround />
       </div>
       <div className="absolute left-0 w-screen border-t" />
     </div>

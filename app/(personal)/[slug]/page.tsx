@@ -3,9 +3,13 @@ import { Page } from 'lib/components/pages/page/Page'
 import { PagePreview } from 'lib/components/pages/page/PagePreview'
 import { PreviewSuspense } from 'lib/components/preview/PreviewSuspense'
 import { PreviewWrapper } from 'lib/components/preview/PreviewWrapper'
-import { getHomePageTitle, getPageBySlug, getSettings } from 'lib/sanity.client'
-import { getPreviewToken } from 'lib/sanity.server.preview'
-import { siteMeta } from 'lib/siteMeta'
+import {
+  getHomePageTitle,
+  getPageBySlug,
+  getSettings,
+} from 'lib/sanity/sanity.client'
+import { getPreviewToken } from 'lib/sanity/sanity.server.preview'
+import { siteMeta } from 'lib/sanity/siteMeta'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {

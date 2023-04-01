@@ -1,7 +1,7 @@
 import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
 import ImageBox from 'lib/components/shared/ImageBox'
-import ScrollUp from 'lib/components/shared/ScrollUp'
+import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
 import Link from 'next/link'
 import type { ProjectPayload } from 'types'
 
@@ -35,7 +35,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
             classesWrapper="relative aspect-[16/9]"
           />
 
-          <div className="grid grid-cols-1 divide-y divide-inherit lg:grid-cols-4 lg:divide-y-0 lg:divide-x">
+          <div className="grid grid-cols-1 divide-y divide-inherit lg:grid-cols-4 lg:divide-x lg:divide-y-0">
             {/* Duration */}
             {!!(startYear && endYear) && (
               <div className="p-3 lg:p-4">
@@ -90,7 +90,7 @@ export function ProjectPage({ data }: { data: ProjectPayload }) {
           />
         )}
         {/* Workaround: scroll to top on route change */}
-        <ScrollUp />
+        <ScrollUpWorkaround />
       </div>
       <div className="absolute left-0 w-screen border-t" />
     </div>

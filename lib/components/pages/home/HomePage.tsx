@@ -1,7 +1,6 @@
 import { ProjectListItem } from 'lib/components/pages/home/ProjectListItem'
-import { Header } from 'components/shared/Header'
-import ScrollUp from 'lib/components/shared/ScrollUp'
-import { resolveHref } from 'lib/sanity.links'
+import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
+import { resolveHref } from 'lib/sanity/sanity.links'
 import Link from 'next/link'
 import type { HomePagePayload } from 'types'
 
@@ -11,8 +10,6 @@ export function HomePage({ data }: { data: HomePagePayload }) {
 
   return (
     <div className="space-y-20">
-      {/* Header */}
-      {title && <Header centered title={title} description={overview} />}
       {/* Showcase projects */}
       {showcaseProjects && showcaseProjects.length > 0 && (
         <div className="mx-auto max-w-[100rem] rounded-md border">
@@ -31,7 +28,7 @@ export function HomePage({ data }: { data: HomePagePayload }) {
       )}
 
       {/* Workaround: scroll to top on route change */}
-      <ScrollUp />
+      <ScrollUpWorkaround />
     </div>
   )
 }
