@@ -64,7 +64,6 @@ export interface SettingsPayload {
 }
 
 export interface Job {
-  id: string
   company: string
   description: string
   start: string
@@ -74,7 +73,6 @@ export interface Job {
 }
 
 export default interface Profile {
-  id: string
   name: string
   motto: string
   email: string
@@ -84,13 +82,11 @@ export default interface Profile {
 }
 
 export interface Project {
-  id: string
   name: string
   description: string
   duration: number
 }
 
 export interface Skill {
-  id: string
   name: string
 }

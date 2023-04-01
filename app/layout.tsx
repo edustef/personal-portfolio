@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css'
 import './global.css'
 
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import ScrollUpButton from 'lib/components/shared/ScrollUpButton'
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -31,7 +32,10 @@ export default async function RootLayout({
       lang="en"
       className={`${mono.variable} ${sans.variable} ${serif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+          {children}
+        <ScrollUpButton />
+      </body>
     </html>
   )
 }

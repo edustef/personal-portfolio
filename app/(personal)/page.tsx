@@ -3,10 +3,10 @@ import { HomePage } from 'lib/components/pages/home/HomePage'
 import { HomePagePreview } from 'lib/components/pages/home/HomePagePreview'
 import { PreviewSuspense } from 'lib/components/preview/PreviewSuspense'
 import { PreviewWrapper } from 'lib/components/preview/PreviewWrapper'
-import { getHomePage, getSettings } from 'lib/sanity/sanity.client'
+import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
+import { getHomePage, getProfile, getSettings } from 'lib/sanity/sanity.client'
 import { getPreviewToken } from 'lib/sanity/sanity.server.preview'
 import { siteMeta } from 'lib/sanity/siteMeta'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
   const token = getPreviewToken()
@@ -25,20 +25,20 @@ export async function generateMetadata() {
 
 export default async function IndexRoute() {
   const token = getPreviewToken()
-  const data = await getHomePage({ token })
 
-  if (!data && !token) {
-    notFound()
-  }
-
-  if (!data && token) {
-    notFound()
+  const [homepageData, profileData] = await Promise.all([
+    getHomePage({ token }),
+    getProfile({ token }),
+  ])
+  const data = {
+    homepageData: homepageData,
+    profileData: profileData,
   }
 
   return (
     <>
-      {!token && !!data && <HomePage data={data} />}
-      {token && data && (
+      {!token && <HomePage data={data} />}
+      {token && (
         <>
           <PreviewSuspense
             fallback={
@@ -51,6 +51,7 @@ export default async function IndexRoute() {
           </PreviewSuspense>
         </>
       )}
+      <ScrollUpWorkaround />
     </>
   )
 }

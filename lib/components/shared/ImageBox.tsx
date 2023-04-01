@@ -1,4 +1,5 @@
 import { urlForImage } from 'lib/sanity/sanity.image'
+import { cn } from 'lib/utils/cn'
 import Image from 'next/image'
 
 interface ImageBoxProps {
@@ -22,9 +23,7 @@ export default function ImageBox({
     image && urlForImage(image)?.height(height).width(width).fit('crop').url()
 
   return (
-    <div
-      className={`w-full overflow-hidden rounded-[3px] bg-gray-50 ${classesWrapper}`}
-    >
+    <div className={cn(`w-full overflow-hidden  bg-gray-50 ${classesWrapper}`)}>
       {imageUrl && (
         <Image
           className="absolute h-full w-full"

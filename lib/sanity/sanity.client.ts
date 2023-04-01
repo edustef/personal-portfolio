@@ -2,44 +2,42 @@ import 'server-only'
 
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity/sanity.api'
 import { createClient } from 'next-sanity'
-import type {
-  HomePagePayload,
-  PagePayload,
-  ProjectPayload,
-  SettingsPayload,
-} from 'types'
 
 import {
+  HomePageQuery,
   homePageQuery,
+  HomePageTitleQuery,
   homePageTitleQuery,
-  pagesBySlugQuery,
+  pageBySlugQuery,
+  PagesQuery,
+  ProfileQuery,
+  profileQuery,
   projectBySlugQuery,
+  ProjectQuery,
+  SettingsQuery,
   settingsQuery,
 } from './sanity.queries'
 
-/**
- * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
- */
+
 const sanityClient = (token?: string) => {
-  return projectId
-    ? createClient({ projectId, dataset, apiVersion, useCdn, token })
-    : null
+  return createClient({ projectId, dataset, apiVersion, useCdn, token })
 }
 
-export async function getHomePage({
-  token,
-}: {
-  token?: string
-}): Promise<HomePagePayload | undefined> {
-  return await sanityClient(token)?.fetch(homePageQuery)
+export async function getHomePage({ token }: { token?: string }) {
+  const res = sanityClient(token).fetch<HomePageQuery | null>(homePageQuery)
+  if (!res) throw new Error('Home page not found')
+
+  return res
 }
 
-export async function getHomePageTitle({
-  token,
-}: {
-  token?: string
-}): Promise<string | undefined> {
-  return await sanityClient(token)?.fetch(homePageTitleQuery)
+export async function getProfile({ token }: { token?: string }) {
+  return await sanityClient(token).fetch<ProfileQuery | null>(profileQuery)
+}
+
+export async function getHomePageTitle({ token }: { token?: string }) {
+  return await sanityClient(token).fetch<HomePageQuery['title'] | null>(
+    homePageTitleQuery
+  )
 }
 
 export async function getPageBySlug({
@@ -48,8 +46,10 @@ export async function getPageBySlug({
 }: {
   slug: string
   token?: string
-}): Promise<PagePayload | undefined> {
-  return await sanityClient(token)?.fetch(pagesBySlugQuery, { slug })
+}) {
+  return await sanityClient(token).fetch<PagesQuery | null>(pageBySlugQuery, {
+    slug,
+  })
 }
 
 export async function getProjectBySlug({
@@ -58,14 +58,13 @@ export async function getProjectBySlug({
 }: {
   slug: string
   token?: string
-}): Promise<ProjectPayload | undefined> {
-  return await sanityClient(token)?.fetch(projectBySlugQuery, { slug })
+}) {
+  return await sanityClient(token).fetch<ProjectQuery | null>(
+    projectBySlugQuery,
+    { slug }
+  )
 }
 
-export async function getSettings({
-  token,
-}: {
-  token?: string
-}): Promise<SettingsPayload | undefined> {
-  return await sanityClient(token)?.fetch(settingsQuery)
+export async function getSettings({ token }: { token?: string }) {
+  return await sanityClient(token).fetch<SettingsQuery | null>(settingsQuery)
 }

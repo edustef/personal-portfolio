@@ -3,6 +3,7 @@ import { Page } from 'lib/components/pages/page/Page'
 import { PagePreview } from 'lib/components/pages/page/PagePreview'
 import { PreviewSuspense } from 'lib/components/preview/PreviewSuspense'
 import { PreviewWrapper } from 'lib/components/preview/PreviewWrapper'
+import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
 import {
   getHomePageTitle,
   getPageBySlug,
@@ -60,6 +61,7 @@ export default async function PageSlugRoute({
           <PagePreview token={token} slug={params.slug} />
         </PreviewSuspense>
       )}
+      <ScrollUpWorkaround />
     </>
   )
 }

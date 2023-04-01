@@ -1,15 +1,20 @@
 'use client'
 
 import { usePreview } from 'lib/sanity/sanity.preview'
-import { homePageQuery } from 'lib/sanity/sanity.queries'
-import type { HomePagePayload } from 'types'
+import {
+  HomePageQuery,
+  homePageQuery,
+  ProfileQuery,
+  profileQuery,
+} from 'lib/sanity/sanity.queries'
 
 import { HomePage } from './HomePage'
 
 export function HomePagePreview({ token }: { token: null | string }) {
-  const home: HomePagePayload = usePreview(token, homePageQuery)
+  const homepageData: HomePageQuery = usePreview(token, homePageQuery)
+  const profileData: ProfileQuery = usePreview(token, profileQuery)
 
-  if (!home) {
+  if (!homepageData) {
     return (
       <div className="text-center">
         Please start editing your Home document to see the preview!
@@ -17,5 +22,5 @@ export function HomePagePreview({ token }: { token: null | string }) {
     )
   }
 
-  return <HomePage data={home} />
+  return <HomePage data={{homepageData, profileData}} />
 }

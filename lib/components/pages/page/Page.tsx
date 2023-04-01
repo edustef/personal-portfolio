@@ -1,8 +1,8 @@
 import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
 import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
-import type { PagePayload } from 'types'
+import { PagesQuery } from 'lib/sanity/sanity.queries'
 
-export function Page({ data }: { data: PagePayload }) {
+export function Page({ data }: { data: PagesQuery }) {
   // Default to an empty object to allow previews on non-existent documents
   const { body, overview, title } = data || {}
 
