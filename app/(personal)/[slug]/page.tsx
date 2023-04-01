@@ -1,10 +1,29 @@
+import { toPlainText } from '@portabletext/react'
 import { Page } from 'components/pages/page/Page'
 import { PagePreview } from 'components/pages/page/PagePreview'
 import { PreviewSuspense } from 'components/preview/PreviewSuspense'
 import { PreviewWrapper } from 'components/preview/PreviewWrapper'
-import { getPageBySlug } from 'lib/sanity.client'
+import { getHomePageTitle, getPageBySlug, getSettings } from 'lib/sanity.client'
 import { getPreviewToken } from 'lib/sanity.server.preview'
+import { siteMeta } from 'lib/siteMeta'
 import { notFound } from 'next/navigation'
+
+export async function generateMetadata() {
+  const token = getPreviewToken()
+
+  const [homePageTitle, page, settings] = await Promise.all([
+    getHomePageTitle({ token }),
+    getPageBySlug({ slug: 'about', token }),
+    getSettings({ token }),
+  ])
+
+  return siteMeta({
+    title: page?.title,
+    baseTitle: homePageTitle,
+    description: page?.overview ? toPlainText(page.overview) : '',
+    image: settings?.ogImage,
+  })
+}
 
 export default async function PageSlugRoute({
   params,
@@ -19,9 +38,14 @@ export default async function PageSlugRoute({
     notFound()
   }
 
+  if (!data && token) {
+    notFound()
+  }
+
   return (
     <>
-      {token ? (
+      {!token && !!data && <Page data={data} />}
+      {token && data && (
         <PreviewSuspense
           fallback={
             <PreviewWrapper>
@@ -31,8 +55,6 @@ export default async function PageSlugRoute({
         >
           <PagePreview token={token} slug={params.slug} />
         </PreviewSuspense>
-      ) : (
-        <Page data={data} />
       )}
     </>
   )
