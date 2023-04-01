@@ -1,6 +1,6 @@
-import { CustomPortableText } from 'components/shared/CustomPortableText'
+import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
-import ScrollUp from 'components/shared/ScrollUp'
+import ScrollUp from 'lib/components/shared/ScrollUp'
 import type { PagePayload } from 'types'
 
 export function Page({ data }: { data: PagePayload }) {

@@ -1,5 +1,5 @@
-import { CustomPortableText } from 'components/shared/CustomPortableText'
-import ImageBox from 'components/shared/ImageBox'
+import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
+import ImageBox from 'lib/components/shared/ImageBox'
 import type { ShowcaseProject } from 'types'
 
 interface ProjectProps {

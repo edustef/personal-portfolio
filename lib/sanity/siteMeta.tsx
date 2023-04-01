@@ -1,5 +1,6 @@
-import { urlForImage } from 'lib/sanity.image'
 import type { Image } from 'sanity'
+
+import { urlForImage } from './sanity.image'
 
 export function siteMeta({
   baseTitle,

@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
+import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity/sanity.api'
 import {
   homePageQuery,
   homePageTitleQuery,

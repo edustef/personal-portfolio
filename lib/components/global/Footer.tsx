@@ -1,4 +1,4 @@
-import { CustomPortableText } from 'components/shared/CustomPortableText'
+import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
 import { PortableTextBlock } from 'sanity'
 
 export function Footer({ footer }: { footer?: PortableTextBlock[] }) {

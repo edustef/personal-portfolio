@@ -3,14 +3,24 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import { apiVersion, dataset, previewSecretId, projectId } from 'lib/sanity.api'
+import {
+  apiVersion,
+  dataset,
+  previewSecretId,
+  projectId,
+} from 'lib/sanity/sanity.api'
 import { previewDocumentNode } from 'plugins/previewPane'
 import { productionUrl } from 'plugins/productionUrl'
 import { pageStructure, singletonPlugin } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import { documentsSchemas, objectsSchemas, PREVIEWABLE_DOCUMENT_TYPES, singletonsSchemas } from 'schemas'
+import {
+  documentsSchemas,
+  objectsSchemas,
+  PREVIEWABLE_DOCUMENT_TYPES,
+  singletonsSchemas,
+} from 'schemas'
 import page from 'schemas/documents/page'
 import project from 'schemas/documents/project'
 import home from 'schemas/singletons/home'
@@ -19,7 +29,6 @@ import settings from 'schemas/singletons/settings'
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
   'Next.js Personal Website with Sanity.io'
-
 
 export default defineConfig({
   basePath: '/studio',

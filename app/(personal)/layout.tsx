@@ -1,8 +1,8 @@
 import 'styles/index.css'
 
-import { Footer } from 'components/global/Footer'
+import { Footer } from 'lib/components/global/Footer'
 import { Navbar } from 'components/global/Navbar'
-import { PreviewBanner } from 'components/preview/PreviewBanner'
+import { PreviewBanner } from 'lib/components/preview/PreviewBanner'
 import { getSettings } from 'lib/sanity.client'
 import { getPreviewToken } from 'lib/sanity.server.preview'
 

@@ -1,6 +1,6 @@
-import { ProjectListItem } from 'components/pages/home/ProjectListItem'
+import { ProjectListItem } from 'lib/components/pages/home/ProjectListItem'
 import { Header } from 'components/shared/Header'
-import ScrollUp from 'components/shared/ScrollUp'
+import ScrollUp from 'lib/components/shared/ScrollUp'
 import { resolveHref } from 'lib/sanity.links'
 import Link from 'next/link'
 import type { HomePagePayload } from 'types'

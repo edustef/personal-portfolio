@@ -1,5 +1,5 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import ImageBox from 'components/shared/ImageBox'
+import ImageBox from 'lib/components/shared/ImageBox'
 import { TimelineSection } from 'components/shared/TimelineSection'
 import { Image, PortableTextBlock } from 'sanity'
 
