@@ -1,7 +1,8 @@
-import Avatar from 'lib/components/avatar'
 import { getProfile } from 'lib/sanity/sanity.client'
 import { notFound } from 'next/navigation'
 import React from 'react'
+
+import Avatar from './Avatar'
 
 export async function Profile() {
   const data = await getProfile()
