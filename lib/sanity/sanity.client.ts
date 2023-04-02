@@ -12,6 +12,7 @@ import {
   profileQuery,
   ProfileType,
   projectBySlugQuery,
+  projectsQuery,
   ProjectType,
   settingsQuery,
   SettingsType,
@@ -39,7 +40,7 @@ export async function getProfile() {
 export async function getJobs() {
   const data = await sanityClient().fetch<JobType[] | null>(jobsQuery)
 
-  if (!data) throw new Error('No jobs found')
+  if (!data) return []
 
   return data
 }
@@ -50,6 +51,14 @@ export async function getHomePageTitle() {
   )
 
   if (!data) throw new Error('No home page title found')
+
+  return data
+}
+
+export async function getProjects() {
+  const data = await sanityClient().fetch<ProjectType[] | null>(projectsQuery)
+
+  if (!data) return []
 
   return data
 }

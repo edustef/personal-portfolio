@@ -113,31 +113,40 @@ export const jobsQuery = groq`
 
 export type ProjectType = {
   _id: string
-  client: string
-  coverImage: string
-  description: string
+  name: string
+  coverImage: Image
+  description: PortableTextBlock[]
   duration: {
     start: string
     end: string
   }
-  overview: PortableTextBlock[]
-  site: string
-  slug: string
-  tags: string[]
-  title: string
+  websiteLink: string
+  sourceLink: string
+  skills: SkillType[]
 }
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
-    client, 
+    name, 
     coverImage,
     description,
     duration, 
-    overview,
-    site, 
-    "slug": slug.current,
-    tags,
-    title,
+    websiteLink, 
+    sourceLink,
+    skills[] 
+  }
+`
+
+export const projectsQuery = groq`
+  *[_type == "project"] | order(title asc){
+    _id,
+    name, 
+    coverImage,
+    description,
+    duration, 
+    websiteLink, 
+    sourceLink,
+    skills[] 
   }
 `
 

@@ -1,4 +1,5 @@
 import { Profile } from 'lib/components/Profile'
+import { Projects } from 'lib/components/Projects'
 import { ScrollUpWorkaround } from 'lib/components/shared/ScrollUpWorkaround'
 import { Work } from 'lib/components/Work'
 import { getHomePage } from 'lib/sanity/sanity.client'
@@ -36,6 +37,8 @@ export default async function IndexRoute() {
         <section>
           <div>
             <h2 className="text-3xl font-semibold text-violet-700">Projects</h2>
+            {/* @ts-expect-error Server Component */}
+            <Projects />
           </div>
         </section>
         <section>
