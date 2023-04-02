@@ -4,6 +4,8 @@ import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity/sanity.api'
 import { createClient } from 'next-sanity'
 
 import {
+  certificatesQuery,
+  CertificateType,
   homePageQuery,
   homePageTitleQuery,
   HomePageType,
@@ -72,6 +74,16 @@ export async function getProjectBySlug({ slug }: { slug: string }) {
   )
 
   if (!data) throw new Error('No project found')
+
+  return data
+}
+
+export async function getCertificates() {
+  const data = await sanityClient().fetch<CertificateType[] | null>(
+    certificatesQuery
+  )
+
+  if (!data) return []
 
   return data
 }

@@ -62,10 +62,10 @@ function Avatar({ image, className }: AvatarProps) {
         className
       )}
     >
-      <div className="animate-spin-slow absolute -z-10 h-[calc(100%_+_1rem)] w-[calc(100%_+_1rem)] rounded-full bg-gradient-to-tl from-violet-400/50 to-transparent to-90% transition-opacity duration-1000 md:h-[calc(100%_+_2rem)] md:w-[calc(100%_+_2rem)]" />
+      <div className=" animate-spin-slow absolute -z-10 h-[calc(100%_+_1rem)] w-[calc(100%_+_1rem)] rounded-full bg-gradient-to-tl from-violet-400/50 to-transparent to-90% transition-opacity duration-1000 md:h-[calc(100%_+_2rem)] md:w-[calc(100%_+_2rem)]" />
       <div className="animate-spin-slow absolute -z-10 h-[calc(100%_+_0.5rem)] w-[calc(100%_+_0.5rem)] rounded-full bg-gradient-to-br from-violet-400/50 to-transparent to-90% transition-opacity duration-1000 md:h-[calc(100%_+_1rem)] md:w-[calc(100%_+_1rem)]" />
       <ImageBox
-        className="rounded-full"
+        className="rounded-full contrast-125"
         image={image}
         width={667}
         height={667}

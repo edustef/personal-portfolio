@@ -1,7 +1,6 @@
 import { groq } from 'next-sanity'
 import { Image, PortableTextBlock } from 'sanity'
 
-// add home page query type
 export type HomePageType = {
   _id: string
   footer: string
@@ -25,6 +24,28 @@ export const homePageQuery = groq`
       workPreference,
     }, 
     title, 
+  }
+`
+
+export type SettingsType = {
+  _id: string
+  footer: PortableTextBlock[]
+  menuItems: {
+    _type: string
+    slug: string
+    title: string
+  }[]
+  ogImage: Image
+}
+export const settingsQuery = groq`
+  *[_type == "settings"][0]{
+    footer,
+    menuItems[]->{
+      _type,
+      "slug": slug.current,
+      title
+    },
+    ogImage,
   }
 `
 
@@ -150,24 +171,19 @@ export const projectsQuery = groq`
   }
 `
 
-export type SettingsType = {
+export type CertificateType = {
   _id: string
-  footer: PortableTextBlock[]
-  menuItems: {
-    _type: string
-    slug: string
-    title: string
-  }[]
-  ogImage: Image
+  title: string
+  description: PortableTextBlock[]
+  dateIssued: string 
+  link: string
 }
-export const settingsQuery = groq`
-  *[_type == "settings"][0]{
-    footer,
-    menuItems[]->{
-      _type,
-      "slug": slug.current,
-      title
-    },
-    ogImage,
+export const certificatesQuery = groq`
+  *[_type == "certificate"] | order(dateIssued desc){
+    _id,
+    title,
+    description,
+    dateIssued,
+    link,
   }
 `

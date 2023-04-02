@@ -1,7 +1,8 @@
+import { Certificates } from 'lib/components/Certificates'
+import { Jobs } from 'lib/components/Jobs'
 import { Profile } from 'lib/components/Profile'
 import { Projects } from 'lib/components/Projects'
 import { ScrollUpWorkaround } from 'lib/components/shared/ScrollUpWorkaround'
-import { Work } from 'lib/components/Work'
 import { getHomePage } from 'lib/sanity/sanity.client'
 import { siteMeta } from 'lib/sanity/siteMeta'
 import { notFound } from 'next/navigation'
@@ -28,7 +29,7 @@ export default async function IndexRoute() {
         {/* @ts-expect-error Server Component */}
         <Profile data={data.profile} />
         <section className="w-full">
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
             <h2 className="text-3xl font-semibold text-violet-700">Work</h2>
             {/* @ts-expect-error Server Component */}
             <Jobs />
@@ -43,7 +44,11 @@ export default async function IndexRoute() {
         </section>
         <section>
           <div>
-            <h2 className="text-3xl font-semibold text-violet-700">Contact</h2>
+            <h2 className="text-3xl font-semibold text-violet-700">
+              Studies & Certificates
+            </h2>
+            {/* @ts-expect-error Server Component */}
+            <Certificates />
           </div>
         </section>
       </main>

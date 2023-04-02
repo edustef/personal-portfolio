@@ -1,3 +1,4 @@
+import certificates from 'schemas/documents/certificates'
 import job from 'schemas/documents/job'
 import page from 'schemas/documents/page'
 import project from 'schemas/documents/project'
@@ -11,7 +12,7 @@ import home from 'schemas/singletons/home'
 import profile from 'schemas/singletons/profile'
 import settings from 'schemas/singletons/settings'
 
-export const documentsSchemas = [page, project, skill, job]
+export const documentsSchemas = [page, project, skill, job, certificates]
 
 export const singletonsSchemas = [home, settings, profile]
 
