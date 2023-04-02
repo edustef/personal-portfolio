@@ -16,9 +16,4 @@ export const singletonsSchemas = [home, settings, profile]
 
 export const objectsSchemas = [milestone, timeline, duration, button]
 
-export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
-  home.name,
-  page.name,
-  project.name,
-  profile.name,
-]
+export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [home.name, page.name]

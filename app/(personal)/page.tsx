@@ -1,56 +1,28 @@
-import { toPlainText } from '@portabletext/react'
-import { HomePage } from 'lib/components/pages/home/HomePage'
-import { HomePagePreview } from 'lib/components/pages/home/HomePagePreview'
-import { PreviewSuspense } from 'lib/components/preview/PreviewSuspense'
-import { PreviewWrapper } from 'lib/components/preview/PreviewWrapper'
+import { HomePage } from 'lib/components/pages/HomePage'
 import ScrollUpWorkaround from 'lib/components/shared/ScrollUpWorkaround'
-import { getHomePage, getProfile, getSettings } from 'lib/sanity/sanity.client'
-import { getPreviewToken } from 'lib/sanity/sanity.server.preview'
+import { getHomePage } from 'lib/sanity/sanity.client'
 import { siteMeta } from 'lib/sanity/siteMeta'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
-  const token = getPreviewToken()
-
-  const [settings, page] = await Promise.all([
-    getSettings({ token }),
-    getHomePage({ token }),
-  ])
+  const page = await getHomePage()
 
   return siteMeta({
     title: page?.title,
-    description: page?.overview ? toPlainText(page.overview) : '',
-    image: settings?.ogImage,
+    description: page?.profile.about,
   })
 }
 
 export default async function IndexRoute() {
-  const token = getPreviewToken()
+  const data = await getHomePage()
 
-  const [homepageData, profileData] = await Promise.all([
-    getHomePage({ token }),
-    getProfile({ token }),
-  ])
-  const data = {
-    homepageData: homepageData,
-    profileData: profileData,
+  if (!data) {
+    notFound()
   }
 
   return (
     <>
-      {!token && <HomePage data={data} />}
-      {token && (
-        <>
-          <PreviewSuspense
-            fallback={
-              <PreviewWrapper>
-                <HomePage data={data} />
-              </PreviewWrapper>
-            }
-          >
-            <HomePagePreview token={token} />
-          </PreviewSuspense>
-        </>
-      )}
+      {<HomePage data={data} />}
       <ScrollUpWorkaround />
     </>
   )

@@ -4,7 +4,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@radix-ui/react-popover'
+} from 'lib/components/shared/Popover'
 import { Construction, Languages } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'

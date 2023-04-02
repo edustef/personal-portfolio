@@ -1,7 +1,9 @@
+import typographyPlugin from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './lib/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -21,9 +23,9 @@ export default {
         },
       },
       fontFamily: {
-        mono: 'var(--font-mono)',
-        sans: 'var(--font-sans)',
-        serif: 'var(--font-serif)',
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        mono: ['IBM Plex Mono', ...defaultTheme.fontFamily.mono],
+        serif: ['PT Serif', ...defaultTheme.fontFamily.serif],
       },
       keyframes: {
         'accordion-down': {
@@ -41,5 +43,5 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typographyPlugin],
 } satisfies Config

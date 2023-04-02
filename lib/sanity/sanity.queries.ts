@@ -2,18 +2,10 @@ import { groq } from 'next-sanity'
 import { Image, PortableTextBlock } from 'sanity'
 
 // add home page query type
-export type HomePageQuery = {
+export type HomePageType = {
   _id: string
   footer: string
-  overview: PortableTextBlock[]
-  showcaseProjects: {
-    _type: string
-    coverImage: Image
-    overview: PortableTextBlock[]
-    slug: string
-    tags: string[]
-    title: string
-  }[]
+  profile: ProfileType
   title: string
 }
 export const homePageQuery = groq`
@@ -21,19 +13,27 @@ export const homePageQuery = groq`
     _id, 
     footer,
     overview, 
-    showcaseProjects[]->{
-      _type,
-      coverImage, 
-      overview, 
-      "slug": slug.current,
-      tags, 
-      title, 
+    profile->{
+      _id,
+      name,
+      motto,
+      email,
+      picture,
+      about,
+      location,
+      phone,
+      workPreference,
     }, 
     title, 
   }
 `
 
-export type ProfileQuery = {
+export type HomePageTitle = Pick<HomePageType, 'title'>
+export const homePageTitleQuery = groq`
+  *[_type == "home"][0].title
+`
+
+export type ProfileType = {
   _id: string
   name: string
   motto: string
@@ -58,29 +58,42 @@ export const profileQuery = groq`
   }
 `
 
-export type HomePageTitleQuery = Pick<HomePageQuery, 'title'>
-export const homePageTitleQuery = groq`
-  *[_type == "home"][0].title
-`
-
-export type PagesQuery = {
+export type SkillType = {
   _id: string
-  body: string
-  overview: PortableTextBlock[]
-  slug: string
-  title: string
+  name: string
 }
-export const pageBySlugQuery = groq`
-  *[_type == "page" && slug.current == $slug][0] {
+export const skillQuery = groq`
+  *[_type == "skill"]{
     _id,
-    body,
-    overview,
-    slug,
-    title,
+    name,
   }
 `
 
-export type ProjectQuery = {
+export type JobType = {
+  _id: string
+  company: string
+  description: string
+  start: string
+  end?: string
+  position: string
+  skills: SkillType[]
+}
+export const jobsQuery = groq`
+  *[_type == "job"]{
+    _id,
+    company,
+    description,
+    start,
+    end,
+    position,
+    skills[]->{
+      _id,
+      name,
+    },
+  }
+`
+
+export type ProjectType = {
   _id: string
   client: string
   coverImage: string
@@ -110,7 +123,7 @@ export const projectBySlugQuery = groq`
   }
 `
 
-export type SettingsQuery = {
+export type SettingsType = {
   _id: string
   footer: PortableTextBlock[]
   menuItems: {

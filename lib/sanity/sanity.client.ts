@@ -4,67 +4,65 @@ import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity/sanity.api'
 import { createClient } from 'next-sanity'
 
 import {
-  HomePageQuery,
   homePageQuery,
-  HomePageTitleQuery,
   homePageTitleQuery,
-  pageBySlugQuery,
-  PagesQuery,
-  ProfileQuery,
+  HomePageType,
+  jobsQuery,
+  JobType,
   profileQuery,
+  ProfileType,
   projectBySlugQuery,
-  ProjectQuery,
-  SettingsQuery,
+  ProjectType,
   settingsQuery,
+  SettingsType,
 } from './sanity.queries'
 
-
-const sanityClient = (token?: string) => {
-  return createClient({ projectId, dataset, apiVersion, useCdn, token })
+const sanityClient = () => {
+  return createClient({ projectId, dataset, apiVersion, useCdn })
 }
 
-export async function getHomePage({ token }: { token?: string }) {
-  const res = sanityClient(token).fetch<HomePageQuery | null>(homePageQuery)
+export async function getHomePage() {
+  const res = sanityClient().fetch<HomePageType | null>(homePageQuery)
   if (!res) throw new Error('Home page not found')
 
   return res
 }
 
-export async function getProfile({ token }: { token?: string }) {
-  return await sanityClient(token).fetch<ProfileQuery | null>(profileQuery)
+export async function getProfile() {
+  const data = await sanityClient().fetch<ProfileType | null>(profileQuery)
+
+  if (!data) throw new Error('No profile found')
+
+  return data
 }
 
-export async function getHomePageTitle({ token }: { token?: string }) {
-  return await sanityClient(token).fetch<HomePageQuery['title'] | null>(
+export async function getJobs() {
+  const data = await sanityClient().fetch<JobType[] | null>(jobsQuery)
+
+  if (!data) throw new Error('No jobs found')
+
+  return data
+}
+
+export async function getHomePageTitle() {
+  const data = await sanityClient().fetch<HomePageType['title'] | null>(
     homePageTitleQuery
   )
+
+  if (!data) throw new Error('No home page title found')
+
+  return data
 }
 
-export async function getPageBySlug({
-  slug,
-  token,
-}: {
-  slug: string
-  token?: string
-}) {
-  return await sanityClient(token).fetch<PagesQuery | null>(pageBySlugQuery, {
-    slug,
-  })
-}
-
-export async function getProjectBySlug({
-  slug,
-  token,
-}: {
-  slug: string
-  token?: string
-}) {
-  return await sanityClient(token).fetch<ProjectQuery | null>(
+export async function getProjectBySlug({ slug }: { slug: string }) {
+  const data = await sanityClient().fetch<ProjectType | null>(
     projectBySlugQuery,
-    { slug }
+    {
+      slug,
+    }
   )
-}
 
-export async function getSettings({ token }: { token?: string }) {
-  return await sanityClient(token).fetch<SettingsQuery | null>(settingsQuery)
+  if (!data) throw new Error('No project found')
+
+  return data
 }

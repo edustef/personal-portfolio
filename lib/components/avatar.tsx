@@ -15,7 +15,13 @@ export default function Avatar({ image, className }: Props) {
         className
       )}
     >
-      <ImageBox image={image} width={667} height={667} alt="Profile picture" />
+      <ImageBox
+        classesWrapper="rounded-full"
+        image={image}
+        width={667}
+        height={667}
+        alt="Profile picture"
+      />
       <div className="bg-brand-500 before:animate-opacity after:animate-opacity absolute left-0 top-0 h-full w-full rounded-full opacity-[15%]" />
     </div>
   )
