@@ -2,12 +2,12 @@ import 'server-only'
 
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity/sanity.api'
 import { createClient } from 'next-sanity'
+import { cache } from 'react'
 
 import {
   certificatesQuery,
   CertificateType,
   homePageQuery,
-  homePageTitleQuery,
   HomePageType,
   jobsQuery,
   JobType,
@@ -16,56 +16,44 @@ import {
   projectBySlugQuery,
   projectsQuery,
   ProjectType,
-  settingsQuery,
-  SettingsType,
 } from './sanity.queries'
 
 const sanityClient = () => {
   return createClient({ projectId, dataset, apiVersion, useCdn })
 }
 
-export async function getHomePage() {
+export const getHomePage = cache(() => {
   const res = sanityClient().fetch<HomePageType | null>(homePageQuery)
   if (!res) throw new Error('Home page not found')
 
   return res
-}
+})
 
-export async function getProfile() {
+export const getProfile = cache(async () => {
   const data = await sanityClient().fetch<ProfileType | null>(profileQuery)
 
   if (!data) throw new Error('No profile found')
 
   return data
-}
+})
 
-export async function getJobs() {
+export const getJobs = cache(async () => {
   const data = await sanityClient().fetch<JobType[] | null>(jobsQuery)
 
   if (!data) return []
 
   return data
-}
+})
 
-export async function getHomePageTitle() {
-  const data = await sanityClient().fetch<HomePageType['title'] | null>(
-    homePageTitleQuery
-  )
-
-  if (!data) throw new Error('No home page title found')
-
-  return data
-}
-
-export async function getProjects() {
+export const getProjects = cache(async () => {
   const data = await sanityClient().fetch<ProjectType[] | null>(projectsQuery)
 
   if (!data) return []
 
   return data
-}
+})
 
-export async function getProjectBySlug({ slug }: { slug: string }) {
+export const getProjectBySlug = cache(async ({ slug }: { slug: string }) => {
   const data = await sanityClient().fetch<ProjectType | null>(
     projectBySlugQuery,
     {
@@ -76,9 +64,9 @@ export async function getProjectBySlug({ slug }: { slug: string }) {
   if (!data) throw new Error('No project found')
 
   return data
-}
+})
 
-export async function getCertificates() {
+export const getCertificates = cache(async () => {
   const data = await sanityClient().fetch<CertificateType[] | null>(
     certificatesQuery
   )
@@ -86,4 +74,4 @@ export async function getCertificates() {
   if (!data) return []
 
   return data
-}
+})
