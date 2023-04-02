@@ -14,7 +14,7 @@ export async function Profile() {
 
   return (
     <>
-      <div className="relative grid w-full grid-cols-3 grid-rows-2 gap-y-8 md:gap-0">
+      <div className="relative grid w-full grid-cols-3 grid-rows-2 gap-x-4 gap-y-10 md:gap-0">
         <div className="bg-artifact absolute left-0 top-1/2 -z-10 h-[calc(100%_+_4rem)] w-full -translate-x-[16%] -translate-y-1/2 rounded-lg bg-gradient-to-br from-violet-400/25 to-transparent to-80% md:w-[calc(100%_+_4rem)] md:-translate-x-8 " />
         <div className="col-span-3 flex flex-col gap-4">
           <div>
@@ -39,10 +39,7 @@ export async function Profile() {
           </p>
         </div>
         <div className="relative w-full place-self-center">
-          <Avatar
-            className="aspect-square w-full sm:h-36 sm:w-36 md:h-48 md:w-48"
-            image={data.picture}
-          />
+          <Avatar className="aspect-square w-full max-w-[12rem]" image={data.picture} />
         </div>
       </div>
     </>
@@ -62,8 +59,8 @@ function Avatar({ image, className }: AvatarProps) {
         className
       )}
     >
-      <div className="absolute -z-10 h-[calc(100%_+_1rem)] w-[calc(100%_+_1rem)] rounded-full bg-violet-400/20 md:h-[calc(100%_+_2rem)] md:w-[calc(100%_+_2rem)]" />
-      <div className="absolute -z-10 h-[calc(100%_+_0.5rem)] w-[calc(100%_+_0.5rem)] rounded-full bg-violet-400/20 md:h-[calc(100%_+_1rem)] md:w-[calc(100%_+_1rem)]" />
+      <div className="animate-spin-slow absolute -z-10 h-[calc(100%_+_1rem)] w-[calc(100%_+_1rem)] rounded-full bg-gradient-to-tl from-violet-400/50 to-transparent to-90% transition-opacity duration-1000 md:h-[calc(100%_+_2rem)] md:w-[calc(100%_+_2rem)]" />
+      <div className="animate-spin-slow absolute -z-10 h-[calc(100%_+_0.5rem)] w-[calc(100%_+_0.5rem)] rounded-full bg-gradient-to-br from-violet-400/50 to-transparent to-90% transition-opacity duration-1000 md:h-[calc(100%_+_1rem)] md:w-[calc(100%_+_1rem)]" />
       <ImageBox
         classesWrapper="rounded-full"
         image={image}
@@ -71,7 +68,7 @@ function Avatar({ image, className }: AvatarProps) {
         height={667}
         alt="Profile picture"
       />
-      <div className="before:animate-opacity after:animate-opacity absolute left-0 top-0 h-full w-full rounded-full bg-fuchsia-500 opacity-[15%]" />
+      <div className="absolute left-0 top-0 h-full w-full rounded-full bg-violet-400/20 " />
     </div>
   )
 }
@@ -91,7 +88,7 @@ function SocialLinks({ links }: SocialLinksProps) {
             <Link
               key={link.name}
               href={link.url}
-              className="group flex h-10 w-10 items-center justify-center rounded-md hover:border hover:border-violet-500 bg-violet-500/40 p-2 text-violet-50 backdrop-blur-sm hover:bg-violet-200"
+              className="group flex h-10 w-10 items-center justify-center rounded-md bg-violet-500/40 p-2 text-violet-50 backdrop-blur-sm hover:border hover:border-violet-500 hover:bg-violet-200"
             >
               {link.name === 'github' && (
                 <Github className="group-hover:text-violet-500" />
