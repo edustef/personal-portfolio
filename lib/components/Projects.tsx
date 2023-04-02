@@ -25,7 +25,7 @@ export function Project({ data }: ProjectProps) {
         <h1 className="text-2xl font-bold">{data.name}</h1>
         <CustomPortableText value={data.description} />
         <ImageBox
-          className="w-full aspect-video"
+          className="aspect-video w-full"
           width={1920}
           height={1080}
           image={data.coverImage}

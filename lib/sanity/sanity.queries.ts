@@ -175,7 +175,7 @@ export type CertificateType = {
   _id: string
   title: string
   description: PortableTextBlock[]
-  dateIssued: string 
+  dateIssued: string
   link: string
 }
 export const certificatesQuery = groq`
