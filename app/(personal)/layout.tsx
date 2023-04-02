@@ -34,7 +34,7 @@ export default async function IndexRoute({
     >
       <body className="noise isoloate flex min-h-screen bg-violet-100 font-sans text-violet-950">
         <div className="relative flex h-full w-full flex-col gap-16 overflow-hidden px-6 py-8 md:px-16 md:py-8">
-          <header>
+          <header className='print:hidden'>
             <Navbar />
           </header>
           {children}
