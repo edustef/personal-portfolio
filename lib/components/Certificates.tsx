@@ -16,7 +16,6 @@ export async function Certificates() {
 }
 
 export function Certificate({ data }: { data: CertificateType }) {
-  console.log({ url: data.link })
   const dateIssuedText = new Date(data.dateIssued).toLocaleDateString('en', {
     month: 'short',
     year: 'numeric',
