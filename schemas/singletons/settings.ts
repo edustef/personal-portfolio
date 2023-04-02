@@ -10,6 +10,11 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
+      name: 'title',
+      title: 'Site Title',
+      type: 'string',
+    }),
+    defineField({
       name: 'menuItems',
       title: 'Menu Item list',
       description: 'Links displayed on the header of your site.',

@@ -3,16 +3,20 @@ import { Jobs } from 'lib/components/Jobs'
 import { Profile } from 'lib/components/Profile'
 import { Projects } from 'lib/components/Projects'
 import { ScrollUpWorkaround } from 'lib/components/shared/ScrollUpWorkaround'
-import { getHomePage } from 'lib/sanity/sanity.client'
+import { getHomePage, getSettings } from 'lib/sanity/sanity.client'
 import { siteMeta } from 'lib/sanity/siteMeta'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
   const page = await getHomePage()
+  const settings = await getSettings()
+  console.log({ page, settings })
 
   return siteMeta({
-    title: page?.title,
+    title: settings?.title,
+    baseTitle: page?.title,
     description: page?.profile.about,
+    image: settings?.ogImage,
   })
 }
 

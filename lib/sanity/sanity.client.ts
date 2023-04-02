@@ -16,6 +16,8 @@ import {
   projectBySlugQuery,
   projectsQuery,
   ProjectType,
+  settingsQuery,
+  SettingsType,
 } from './sanity.queries'
 
 const sanityClient = () => {
@@ -26,6 +28,12 @@ export const getHomePage = cache(() => {
   const res = sanityClient().fetch<HomePageType | null>(homePageQuery)
   if (!res) throw new Error('Home page not found')
 
+  return res
+})
+
+export const getSettings = cache(() => {
+  const res = sanityClient().fetch<SettingsType | null>(settingsQuery)
+  if (!res) throw new Error('Settings not found')
   return res
 })
 

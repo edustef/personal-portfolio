@@ -29,22 +29,12 @@ export const homePageQuery = groq`
 
 export type SettingsType = {
   _id: string
-  footer: PortableTextBlock[]
-  menuItems: {
-    _type: string
-    slug: string
-    title: string
-  }[]
+  title: string
   ogImage: Image
 }
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-    footer,
-    menuItems[]->{
-      _type,
-      "slug": slug.current,
-      title
-    },
+    title,
     ogImage,
   }
 `
