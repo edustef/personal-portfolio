@@ -4,6 +4,7 @@
  * @TODO the code in this plugin is a candidate for moving into `@sanity/preview-kit/studio`
  */
 
+import type { SanityClient } from '@sanity/client'
 import { type Slug, definePlugin } from 'sanity'
 
 import { getSecret } from './utils'
@@ -32,7 +33,11 @@ export const productionUrl = definePlugin<{
         const url = new URL('/api/preview', location.origin)
 
         const client = getClient({ apiVersion })
-        const secret = await getSecret(client, previewSecretId, true)
+        const secret = await getSecret(
+          client as unknown as SanityClient,
+          previewSecretId,
+          true
+        )
         if (secret) {
           url.searchParams.set('secret', secret)
         }

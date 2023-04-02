@@ -1,3 +1,4 @@
+import type { SanityClient } from '@sanity/client'
 import { Card, Text } from '@sanity/ui'
 import { resolveHref } from 'lib/sanity/sanity.links'
 import { getSecret } from 'plugins/productionUrl/utils'
@@ -63,7 +64,7 @@ export function PreviewPane(
 const fetchSecret = Symbol('preview.secret')
 const Iframe = memo(function Iframe(props: IframeProps) {
   const { apiVersion, documentType, previewSecretId, slug } = props
-  const client = useClient({ apiVersion })
+  const client = useClient({ apiVersion }) as unknown as SanityClient
 
   const secret = suspend(
     () => getSecret(client, previewSecretId, true),
