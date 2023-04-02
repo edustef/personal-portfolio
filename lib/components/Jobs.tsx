@@ -1,27 +1,29 @@
 import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
-import Markdown from 'lib/components/shared/Markdown'
+import { getJobs } from 'lib/sanity/sanity.client'
 import { JobType } from 'lib/sanity/sanity.queries'
 import { ArrowRight, CalendarDays, User } from 'lucide-react'
 import React from 'react'
 
-const WorkExperienceCard: React.FC<JobType> = ({
-  company,
-  description,
-  isCurrent,
-  skills,
-  startDate,
-  endDate,
-  todayText,
-  position,
-}) => {
+export async function Jobs() {
+  const jobs = await getJobs()
+  return (
+    <div className="flex flex-col gap-6">
+      {jobs.map((job) => (
+        <Job key={job._id} data={job} />
+      ))}
+    </div>
+  )
+}
+
+export function Job({ data }: { data: JobType }) {
   const locale = 'en'
-  const startDateText = new Date(startDate).toLocaleDateString(locale, {
+  const startDateText = new Date(data.startDate).toLocaleDateString(locale, {
     month: 'short',
     year: 'numeric',
   })
-  const endDateText = isCurrent
-    ? todayText
-    : new Date(endDate).toLocaleDateString(locale, {
+  const endDateText = data.isCurrent
+    ? data.todayText
+    : new Date(data.endDate).toLocaleDateString(locale, {
         month: 'short',
         year: 'numeric',
       })
@@ -30,10 +32,10 @@ const WorkExperienceCard: React.FC<JobType> = ({
     <div className="rounded-lg bg-violet-50 p-4 text-violet-950">
       <div className="flex max-w-2xl flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-semibold">{company}</h2>
+          <h2 className="text-xl font-semibold">{data.company}</h2>
           <div className="flex items-center gap-2 text-sm italic">
             <User className="w-[1.5em]" />
-            <span>{position}</span>
+            <span>{data.position}</span>
           </div>
           <div className="flex items-center gap-2 text-sm">
             <CalendarDays className="w-[1.5em]" />
@@ -43,7 +45,7 @@ const WorkExperienceCard: React.FC<JobType> = ({
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
-          {skills.map((skill, index) => (
+          {data.skills.map((skill, index) => (
             <div
               key={index}
               className="rounded-md bg-violet-100 px-2 py-1 text-sm font-semibold text-violet-700"
@@ -52,10 +54,8 @@ const WorkExperienceCard: React.FC<JobType> = ({
             </div>
           ))}
         </div>
-        <CustomPortableText value={description} />
+        <CustomPortableText value={data.description} />
       </div>
     </div>
   )
 }
-
-export default WorkExperienceCard

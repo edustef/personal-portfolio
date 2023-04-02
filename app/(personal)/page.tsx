@@ -31,7 +31,7 @@ export default async function IndexRoute() {
           <div className="flex flex-col gap-4">
             <h2 className="text-3xl font-semibold text-violet-700">Work</h2>
             {/* @ts-expect-error Server Component */}
-            <Work />
+            <Jobs />
           </div>
         </section>
         <section>
