@@ -62,6 +62,12 @@ export default defineType({
       hidden: ({ parent }) => parent?.isCurrent,
     },
     {
+      name: 'todayText',
+      title: 'Today Text',
+      type: 'string',
+      hidden: ({ parent }) => !parent?.isCurrent,
+    },
+    {
       name: 'skills',
       title: 'Skills',
       type: 'array',

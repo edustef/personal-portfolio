@@ -4,7 +4,6 @@ import React from 'react'
 
 export async function Work() {
   const jobs = await getJobs()
-  console.log(jobs)
   return (
     <div className="flex flex-col gap-6">
       {jobs.map((job) => (

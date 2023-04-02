@@ -74,15 +74,26 @@ export const skillQuery = groq`
   }
 `
 
+type WithoutCurrentJob = {
+  isCurrent: false
+  endDate: string
+  todayText?: never
+}
+
+type WithCurrentJob = {
+  isCurrent: true
+  endDate?: never
+  todayText: string
+}
 export type JobType = {
   _id: string
   company: string
   description: PortableTextBlock[]
   startDate: string
-  endDate?: string
   position: string
   skills: SkillType[]
-}
+} & (WithoutCurrentJob | WithCurrentJob)
+
 export const jobsQuery = groq`
   *[_type == "job"] | order(startDate desc){
     _id,
@@ -90,6 +101,8 @@ export const jobsQuery = groq`
     description,
     startDate,
     endDate,
+    isCurrent,
+    todayText,
     position,
     skills[]->{
       _id,
