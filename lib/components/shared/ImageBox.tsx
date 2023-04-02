@@ -25,7 +25,7 @@ export default function ImageBox({
   return (
     <div
       className={cn(
-        `relative h-full w-full overflow-hidden bg-gray-50 ${classesWrapper}`
+        `relative h-full w-full overflow-hidden bg-purple-50 ${classesWrapper}`
       )}
     >
       {imageUrl && (

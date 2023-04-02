@@ -42,9 +42,7 @@ export function CustomPortableText({
               classesWrapper="relative aspect-[16/9]"
             />
             {value?.caption && (
-              <div className="font-sans text-sm text-gray-600">
-                {value.caption}
-              </div>
+              <div className="font-sans text-sm">{value.caption}</div>
             )}
           </div>
         )
@@ -53,7 +51,7 @@ export function CustomPortableText({
   }
 
   return (
-    <div className="prose prose-ul:text-brand-800 prose-li:list-image-[url(/pointing-right.svg)]">
+    <div className="prose prose-p:text-purple-950 prose-ul:text-purple-950 prose-li:list-image-[url(/pointing-right.svg)]">
       <PortableText components={components} value={value} />
     </div>
   )

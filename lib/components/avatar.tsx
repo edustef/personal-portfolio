@@ -11,7 +11,7 @@ export default function Avatar({ image, className }: Props) {
   return (
     <div
       className={cn(
-        'avatar border-brand-500 flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 sm:h-36 sm:w-36',
+        'avatar flex flex-shrink-0 items-center justify-center rounded-full border-4 border-fuchsia-500',
         className
       )}
     >
@@ -22,7 +22,7 @@ export default function Avatar({ image, className }: Props) {
         height={667}
         alt="Profile picture"
       />
-      <div className="bg-brand-500 before:animate-opacity after:animate-opacity absolute left-0 top-0 h-full w-full rounded-full opacity-[15%]" />
+      <div className="before:animate-opacity after:animate-opacity absolute left-0 top-0 h-full w-full rounded-full bg-fuchsia-500 opacity-[15%]" />
     </div>
   )
 }

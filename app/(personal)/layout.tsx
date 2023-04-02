@@ -32,7 +32,7 @@ export default async function IndexRoute({
       lang="en"
       className={`${mono.className} ${sans.className} ${serif.className}`}
     >
-      <body className="noise isoloate bg-brand-200 text-brand-800 flex min-h-screen">
+      <body className="noise isoloate flex min-h-screen bg-purple-100 text-purple-950">
         <div className="relative flex h-full w-full flex-col gap-20 overflow-hidden px-4 py-4 md:px-16 md:py-8">
           <header>
             <Navbar />
@@ -40,7 +40,7 @@ export default async function IndexRoute({
           {children}
           <div className="flex flex-col gap-4">
             <Footer />
-            <div className="bg-brand-300/50 text-brand-600 flex items-center gap-3 rounded-lg p-2 font-mono text-xs italic">
+            <div className="flex items-center gap-3 rounded-lg bg-purple-300/50 p-2 font-mono text-xs italic text-purple-700">
               <AlertCircle className="w-[2em]" />
               <span>
                 JSX element &apos;div&apos; has no

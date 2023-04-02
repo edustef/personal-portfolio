@@ -27,7 +27,7 @@
     height: calc(100% + 1rem);
     animation: opacityAnimation 5s linear infinite 2s;
     z-index: -1;
-    @apply bg-brand-400/70 -z-10 rounded-full;
+    @apply -z-10 rounded-full bg-purple-400/70;
   }
 
   .avatar::after {
@@ -37,7 +37,7 @@
     height: calc(100% + 1.6rem);
     animation: opacityAnimation 4s linear infinite;
     z-index: -1;
-    @apply bg-brand-400/40 -z-10 rounded-full;
+    @apply -z-10 rounded-full bg-purple-400/40;
   }
 
   .mask {

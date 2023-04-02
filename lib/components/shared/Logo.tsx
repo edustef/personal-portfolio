@@ -9,9 +9,9 @@ const Logo = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <div className="mask bg-brand-500/20 absolute h-12 w-12 rounded-xl "></div>
-      <div className="mask bg-brand-500/50 absolute h-11 w-11 rounded-lg"></div>
-      <div className="mask bg-brand-500 absolute h-10 w-10 rounded-md"></div>
+      <div className="mask absolute h-12 w-12 rounded-xl bg-purple-500/20 "></div>
+      <div className="mask absolute h-11 w-11 rounded-lg bg-purple-500/50"></div>
+      <div className="mask absolute h-10 w-10 rounded-md bg-purple-500"></div>
     </div>
   )
 }

@@ -33,7 +33,7 @@ const ScrollUpButton: React.FC = () => {
       {debouncedShowButton && (
         <button
           onClick={scrollToTop}
-          className="bg-brand-500/40 text-brand-100 fixed bottom-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-lg backdrop-blur-sm md:bottom-8 md:right-16 m-1"
+          className="fixed bottom-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/40 text-purple-50 backdrop-blur-sm md:bottom-8 md:right-16 md:m-1"
         >
           <ChevronUp className="h-5 w-5" />
         </button>

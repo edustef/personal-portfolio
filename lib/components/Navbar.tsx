@@ -15,26 +15,26 @@ export function Navbar() {
       {/* <Logo /> */}
       <Link
         href="/"
-        className="text-brand-800 hover:text-brand-600 font-semibold"
+        className="font-semibold text-purple-950 hover:text-purple-700"
       >
         Home
       </Link>
       <Link
         href="/contact"
-        className="text-brand-800 hover:text-brand-600 font-semibold"
+        className="font-semibold text-purple-950 hover:text-purple-700"
       >
         Contact
       </Link>
       <div className="ml-auto flex items-center justify-center">
         <Popover>
           <PopoverTrigger>
-            <Languages className="text-brand-800 hover:text-brand-600 ml-auto h-8 w-8 p-1" />
+            <Languages className="ml-auto h-8 w-8 p-1 text-purple-950 hover:text-purple-700" />
           </PopoverTrigger>
           <PopoverContent className="flex flex-col gap-2" align="end">
-            <button className="hover:text-brand-600 flex items-center justify-end gap-2">
+            <button className="flex items-center justify-end gap-2 hover:text-purple-700">
               <span>English</span>
             </button>
-            <button className="hover:text-brand-600 flex items-center justify-end gap-2">
+            <button className="flex items-center justify-end gap-2 hover:text-purple-700">
               <Construction />
               <span>Español</span>
             </button>

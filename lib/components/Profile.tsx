@@ -1,4 +1,4 @@
-import Avatar from 'lib/components/Avatar'
+import Avatar from 'lib/components/avatar'
 import { getProfile } from 'lib/sanity/sanity.client'
 import { notFound } from 'next/navigation'
 import React from 'react'
@@ -10,28 +10,35 @@ export async function Profile() {
 
   return (
     <>
-      <div className="bg-artifact from-brand-300/25 absolute left-0 top-0 -z-10 h-64 w-[36rem] -translate-x-[20rem] translate-y-[21px] rotate-45 rounded-lg bg-gradient-to-br to-transparent md:hidden" />
-      <div className="flex flex-col gap-2">
-        <h1 className="text-brand-800 relative -z-20 text-4xl font-extrabold">
-          {data.name}
-        </h1>
-        <p className="text-brand-500 max-w-xs font-mono text-base tracking-tight">
-          {data.motto}
-        </p>
-      </div>
-      <section className="flex w-full flex-col gap-4 sm:gap-0">
-        <div className="max-w-fit">
-          <h2 className="text-brand-600 text-3xl font-semibold">About me</h2>
-        </div>
-        <div className="relative flex w-full items-center justify-between gap-2">
-          <div className="bg-artifact from-brand-300/25 absolute -right-24 top-20 h-60 w-60 -translate-y-1/2  rounded-full bg-gradient-to-bl to-transparent sm:h-80 sm:w-80 sm:translate-x-10 md:hidden" />
-          <p className="max-w-[13rem] sm:max-w-sm">
-            I am a front-end developer with a focus on sublime and accessible
-            user interfaces.
+      <div className="relative grid w-full grid-cols-3 grid-rows-2">
+        <div className="bg-artifact absolute left-0 top-1/2 -z-10 h-[calc(100%_+_4rem)] w-full -translate-x-[16%] -translate-y-1/2 rounded-lg bg-gradient-to-br from-purple-300/25 to-transparent to-80% md:w-[70%] md:-translate-x-8 " />
+        <div className="col-span-3">
+          <h1 className="relative -z-20 text-3xl font-extrabold text-purple-950">
+            {data.name}
+          </h1>
+          <p className="max-w-xs font-mono text-base tracking-tight text-purple-500">
+            {data.motto}
           </p>
-          <Avatar image={data.picture} />
         </div>
-      </section>
+        <div className="col-span-2 self-center">
+          <div className="max-w-fit">
+            <h2 className="text-2xl font-semibold text-purple-700">About me</h2>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <p className="max-w-[13rem] sm:max-w-sm">
+              I am a front-end developer with a focus on sublime and accessible
+              user interfaces.
+            </p>
+          </div>
+        </div>
+        <div className="relative place-self-center">
+          <div className="bg-artifact absolute -right-24 top-1/2 hidden h-56 w-56 -translate-y-1/2 rounded-full bg-gradient-to-l from-purple-300/25 to-transparent to-80% sm:h-80 sm:w-80 sm:-translate-x-8 md:block md:h-80 md:w-80" />
+          <Avatar
+            className="h-28 w-28 sm:h-36 sm:w-36 md:h-48 md:w-48"
+            image={data.picture}
+          />
+        </div>
+      </div>
     </>
   )
 }
