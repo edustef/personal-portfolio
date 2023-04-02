@@ -1,18 +1,28 @@
+import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
 import Markdown from 'lib/components/shared/Markdown'
+import { JobType } from 'lib/sanity/sanity.queries'
 import { ArrowRight, CalendarDays, User } from 'lucide-react'
 import React from 'react'
 
-const WorkExperienceCard: React.FC<Job> = ({
+const WorkExperienceCard: React.FC<JobType> = ({
   company,
   description,
   skills,
-  start,
-  end,
+  startDate,
+  endDate,
   position,
 }) => {
   const locale = 'en'
-  const startDate = new Date(start)
-  const endDate = end ? new Date(end) : undefined
+  const startDateFormated = new Date(startDate).toLocaleDateString(locale, {
+    month: 'short',
+    year: 'numeric',
+  })
+  const endDateFormated = endDate
+    ? new Date(endDate).toLocaleDateString(locale, {
+        month: 'short',
+        year: 'numeric',
+      })
+    : undefined
   return (
     <div>
       <div className="bg-brand-100 text-brand-800 flex flex-col gap-6 rounded-lg p-4">
@@ -24,21 +34,9 @@ const WorkExperienceCard: React.FC<Job> = ({
           </div>
           <div className="flex items-center gap-2 text-sm">
             <CalendarDays className="w-[1.5em]" />
-            <span>
-              {startDate.toLocaleDateString(locale, {
-                month: 'short',
-                year: 'numeric',
-              })}
-            </span>
+            <span>{startDateFormated}</span>
             <ArrowRight className="w-[1em]" />
-            <span>
-              {endDate
-                ? endDate.toLocaleDateString(locale, {
-                    month: 'short',
-                    year: 'numeric',
-                  })
-                : 'Now'}
-            </span>
+            <span>{endDateFormated}</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -51,7 +49,7 @@ const WorkExperienceCard: React.FC<Job> = ({
             </div>
           ))}
         </div>
-        <Markdown>{description}</Markdown>
+        <CustomPortableText value={description} />
       </div>
     </div>
   )

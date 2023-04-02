@@ -11,7 +11,7 @@ export default function Avatar({ image, className }: Props) {
   return (
     <div
       className={cn(
-        'avatar border-brand-500 flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4',
+        'avatar border-brand-500 flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-full border-4 sm:h-36 sm:w-36',
         className
       )}
     >

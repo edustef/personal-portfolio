@@ -8,7 +8,7 @@ import { useEffect } from 'react'
  * https://github.com/vercel/next.js/issues/42492
  */
 
-export default function ScrollUpWorkaround() {
+export function ScrollUpWorkaround() {
   useEffect(() => window.scrollTo({ top: 0 }), [])
 
   return null

@@ -2,26 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-p:not(:last-child) {
-  margin-bottom: 0.875rem;
-}
-
-ol,
-ul {
-  margin-left: 1rem;
-}
-
-ol {
-  list-style-type: disc;
-}
-
 @layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
   html,
   body {
     overscroll-behavior: none;
@@ -39,9 +25,9 @@ ol {
     content: '';
     width: calc(100% + 1rem);
     height: calc(100% + 1rem);
-    @apply bg-brand-400/70 rounded-full;
     animation: opacityAnimation 5s linear infinite 2s;
     z-index: -1;
+    @apply bg-brand-400/70 -z-10 rounded-full;
   }
 
   .avatar::after {
@@ -49,9 +35,9 @@ ol {
     content: '';
     width: calc(100% + 1.6rem);
     height: calc(100% + 1.6rem);
-    @apply bg-brand-400/40 rounded-full;
     animation: opacityAnimation 4s linear infinite;
     z-index: -1;
+    @apply bg-brand-400/40 -z-10 rounded-full;
   }
 
   .mask {
@@ -75,13 +61,11 @@ ol {
     background-image: url('/bg-noise.svg');
     background-repeat: repeat;
     filter: contrast(100%) brightness(120%);
-    opacity: 20%;
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -30;
+    @apply absolute -z-30 opacity-20;
   }
 
   @keyframes opacityAnimation {

@@ -72,19 +72,19 @@ export const skillQuery = groq`
 export type JobType = {
   _id: string
   company: string
-  description: string
-  start: string
-  end?: string
+  description: PortableTextBlock[]
+  startDate: string
+  endDate?: string
   position: string
   skills: SkillType[]
 }
 export const jobsQuery = groq`
-  *[_type == "job"]{
+  *[_type == "job"] | order(startDate desc){
     _id,
     company,
     description,
-    start,
-    end,
+    startDate,
+    endDate,
     position,
     skills[]->{
       _id,
