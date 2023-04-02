@@ -25,7 +25,7 @@ const WorkExperienceCard: React.FC<JobType> = ({
     : undefined
   return (
     <div>
-      <div className="flex flex-col gap-6 rounded-lg bg-purple-50 p-4 text-purple-950">
+      <div className="flex flex-col gap-6 rounded-lg bg-violet-50 p-4 text-violet-950">
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-semibold">{company}</h2>
           <div className="flex items-center gap-2 text-sm italic">
@@ -43,7 +43,7 @@ const WorkExperienceCard: React.FC<JobType> = ({
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="rounded-md bg-purple-100 px-2 py-1 text-sm font-semibold text-purple-700"
+              className="rounded-md bg-violet-100 px-2 py-1 text-sm font-semibold text-violet-700"
             >
               {skill.name}
             </div>

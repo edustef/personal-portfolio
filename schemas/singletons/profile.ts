@@ -39,11 +39,21 @@ export default defineType({
       name: 'picture',
       title: 'Picture',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
+
     {
       name: 'workPreference',
       title: 'Work Preference',
       type: 'string',
+    },
+    {
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'array',
+      of: [{ type: 'socialLink' }],
     },
   ],
 })

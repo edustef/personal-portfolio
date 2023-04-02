@@ -28,19 +28,19 @@ export default async function IndexRoute() {
         <Profile data={data.profile} />
         <section className="w-full">
           <div className="flex flex-col gap-4">
-            <h2 className="text-3xl font-semibold text-purple-700">Work</h2>
+            <h2 className="text-3xl font-semibold text-violet-700">Work</h2>
             {/* @ts-expect-error Server Component */}
             <Work />
           </div>
         </section>
         <section>
           <div>
-            <h2 className="text-3xl font-semibold text-purple-700">Projects</h2>
+            <h2 className="text-3xl font-semibold text-violet-700">Projects</h2>
           </div>
         </section>
         <section>
           <div>
-            <h2 className="text-3xl font-semibold text-purple-700">Contact</h2>
+            <h2 className="text-3xl font-semibold text-violet-700">Contact</h2>
           </div>
         </section>
       </main>

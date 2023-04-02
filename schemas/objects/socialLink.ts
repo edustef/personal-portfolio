@@ -15,10 +15,5 @@ export default defineType({
       title: 'URL',
       type: 'url',
     },
-    {
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
-    },
   ],
 })

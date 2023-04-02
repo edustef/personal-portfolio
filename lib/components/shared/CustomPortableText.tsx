@@ -51,7 +51,7 @@ export function CustomPortableText({
   }
 
   return (
-    <div className="prose prose-p:text-purple-950 prose-ul:text-purple-950 prose-li:list-image-[url(/pointing-right.svg)]">
+    <div className="prose prose-p:text-violet-950 prose-ul:text-violet-950 prose-li:list-image-[url(/pointing-right.svg)]">
       <PortableText components={components} value={value} />
     </div>
   )

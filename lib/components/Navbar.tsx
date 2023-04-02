@@ -15,29 +15,35 @@ export function Navbar() {
       {/* <Logo /> */}
       <Link
         href="/"
-        className="font-semibold text-purple-950 hover:text-purple-700"
+        className="font-semibold text-violet-950 hover:text-violet-700"
       >
         Home
       </Link>
       <Link
-        href="/contact"
-        className="font-semibold text-purple-950 hover:text-purple-700"
+        href="/resume"
+        className="font-semibold text-violet-950 hover:text-violet-700"
       >
-        Contact
+        Resume
       </Link>
       <div className="ml-auto flex items-center justify-center">
         <Popover>
           <PopoverTrigger>
-            <Languages className="ml-auto h-8 w-8 p-1 text-purple-950 hover:text-purple-700" />
+            <Languages className="ml-auto h-8 w-8 p-1 text-violet-950 hover:text-violet-700" />
           </PopoverTrigger>
-          <PopoverContent className="flex flex-col gap-2" align="end">
-            <button className="flex items-center justify-end gap-2 hover:text-purple-700">
-              <span>English</span>
-            </button>
-            <button className="flex items-center justify-end gap-2 hover:text-purple-700">
-              <Construction />
-              <span>Español</span>
-            </button>
+          <PopoverContent align="end">
+            <div className="w-full">
+              <div className="py-2 pr-4 text-end font-bold">Languages</div>
+              <div className=" mr-0 h-[1px] w-full bg-purple-400/20"></div>
+            </div>
+            <div className="flex flex-col gap-3 py-4 pl-10 pr-4 font-semibold">
+              <button className="flex items-center justify-end gap-2 hover:text-violet-700">
+                <span>English</span>
+              </button>
+              <button className="flex items-center justify-end gap-2 hover:text-violet-700">
+                <Construction />
+                <span>Español</span>
+              </button>
+            </div>
           </PopoverContent>
         </Popover>
       </div>

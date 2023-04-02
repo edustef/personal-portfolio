@@ -43,6 +43,10 @@ export type ProfileType = {
   location: string
   phone: string
   workPreference: string
+  socialLinks: {
+    name: string
+    url: string
+  }[]
 }
 export const profileQuery = groq`
   *[_type == "profile"][0]{
@@ -55,6 +59,7 @@ export const profileQuery = groq`
     location,
     phone,
     workPreference,
+    socialLinks[]
   }
 `
 
