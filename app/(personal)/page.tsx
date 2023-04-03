@@ -10,7 +10,6 @@ import { notFound } from 'next/navigation'
 export async function generateMetadata() {
   const page = await getHomePage()
   const settings = await getSettings()
-  console.log({ page, settings })
 
   return siteMeta({
     title: settings?.title,

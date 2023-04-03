@@ -1,7 +1,16 @@
 import ImageBox from 'lib/components/shared/ImageBox'
+import Tag from 'lib/components/shared/Tag'
 import { getProfile } from 'lib/sanity/sanity.client'
 import { cn } from 'lib/utils/cn'
-import { Github, Linkedin, Twitter } from 'lucide-react'
+import {
+  ExternalLink,
+  Github,
+  Laptop,
+  Linkedin,
+  Mail,
+  MapPin,
+  Twitter,
+} from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React, { ReactNode } from 'react'
@@ -14,29 +23,44 @@ export async function Profile() {
 
   return (
     <>
-      <div className="relative grid w-full grid-cols-3 grid-rows-2 gap-x-4 gap-y-10 md:gap-0">
+      <div className="relative grid w-full grid-cols-3 grid-rows-2 gap-x-4 gap-y-4 md:gap-x-0">
         <div className="bg-artifact absolute left-0 top-1/2 -z-10 h-[calc(100%_+_4rem)] w-full -translate-x-[16%] -translate-y-1/2 rounded-lg bg-gradient-to-br from-violet-400/25 to-transparent to-80% md:w-[calc(100%_+_4rem)] md:-translate-x-8 " />
-        <div className="col-span-3 flex flex-col gap-4">
-          <div>
-            <h1 className="relative -z-20 text-3xl font-extrabold text-violet-950">
+        <div className="col-span-3">
+          <div className="flex flex-col gap-4">
+            <h1 className="relative -z-20 text-3xl font-extrabold text-violet-950 md:text-5xl">
               {data.name}
             </h1>
-            <p className="max-w-xs font-mono text-base tracking-tight text-violet-700">
+            <p className="max-w-xs font-mono text-base tracking-tight text-violet-800">
               {data.motto}
             </p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <SocialLinks links={data.socialLinks} />
+            <div className="flex flex-col gap-2">
+              <SocialLinks links={data.socialLinks} />
+            </div>
           </div>
         </div>
-        <div className="col-span-2 self-center">
-          <div className="max-w-fit">
-            <h2 className="text-2xl font-semibold text-violet-700">About me</h2>
-          </div>
+        <div className="col-span-2 flex flex-col gap-2 self-center">
+          <h2 className="text-2xl font-semibold text-violet-800">About me</h2>
           <p className="w-full max-w-[13rem] sm:max-w-sm">
             I am a front-end developer with a focus on sublime and accessible
             user interfaces.
           </p>
+          <div className="flex flex-wrap gap-2">
+            <Tag className="flex w-fit items-center gap-2">
+              <MapPin className="w-[1.2em]" />
+              <span>{data.location}</span>
+            </Tag>
+            <Tag className="flex w-fit items-center gap-2">
+              <Laptop className="w-[1.2em]" />
+              <span>{data.workPreference}</span>
+            </Tag>
+            <a href={`mailto:${data.email}`}>
+              <Tag className="flex w-fit items-center gap-2">
+                <Mail className="w-[1.2em]" />
+                <span>{data.email}</span>
+                <ExternalLink className="w-[1.15em]" />
+              </Tag>
+            </a>
+          </div>
         </div>
         <div className="relative w-full place-self-center">
           <Avatar
@@ -91,7 +115,7 @@ function SocialLinks({ links }: SocialLinksProps) {
             <Link
               key={link.name}
               href={link.url}
-              className="group flex h-10 w-10 items-center justify-center rounded-md bg-violet-500/40 p-2 text-violet-50 backdrop-blur-sm hover:border hover:border-violet-500 hover:bg-violet-200"
+              className="group flex h-10 w-10 items-center justify-center rounded-md bg-violet-400 p-2 text-violet-50 hover:border hover:border-violet-400/30 hover:bg-violet-400/20"
             >
               {link.name === 'github' && (
                 <Github className="group-hover:text-violet-500" />

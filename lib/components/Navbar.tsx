@@ -1,6 +1,5 @@
 'use client'
 
-import DownloadResume from 'lib/components/DownloadResume'
 import {
   Popover,
   PopoverContent,
@@ -12,7 +11,7 @@ import React from 'react'
 
 export function Navbar() {
   return (
-    <nav className="m-auto flex max-w-3xl items-center gap-6">
+    <nav className="m-auto flex max-w-3xl items-center gap-4">
       {/* <Logo /> */}
       <Link
         href="/"
@@ -20,7 +19,12 @@ export function Navbar() {
       >
         Home
       </Link>
-      <DownloadResume />
+      <Link
+        href="/resume"
+        className="font-semibold text-violet-950 hover:text-violet-700"
+      >
+        Resume
+      </Link>
       <div className="ml-auto flex items-center justify-center">
         <Popover>
           <PopoverTrigger>

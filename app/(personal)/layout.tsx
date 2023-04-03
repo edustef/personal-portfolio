@@ -5,6 +5,7 @@ import { Navbar } from 'lib/components/Navbar'
 import ScrollUpButton from 'lib/components/shared/ScrollUpButton'
 import { AlertCircle } from 'lucide-react'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import { ReactNode } from 'react'
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -25,7 +26,7 @@ const mono = IBM_Plex_Mono({
 export default async function IndexRoute({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html
@@ -34,7 +35,7 @@ export default async function IndexRoute({
     >
       <body className="noise isoloate flex min-h-screen bg-violet-100 font-sans text-violet-950">
         <div className="relative flex h-full w-full flex-col gap-16 overflow-hidden px-6 py-8 md:px-16 md:py-8">
-          <header className='print:hidden'>
+          <header>
             <Navbar />
           </header>
           {children}

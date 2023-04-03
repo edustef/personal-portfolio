@@ -1,4 +1,5 @@
 import { CustomPortableText } from 'lib/components/shared/CustomPortableText'
+import Tag from 'lib/components/shared/Tag'
 import { getJobs } from 'lib/sanity/sanity.client'
 import { JobType } from 'lib/sanity/sanity.queries'
 import { ArrowRight, CalendarDays, User } from 'lucide-react'
@@ -46,12 +47,7 @@ export function Job({ data }: { data: JobType }) {
         </div>
         <div className="flex flex-wrap gap-3">
           {data.skills.map((skill, index) => (
-            <div
-              key={index}
-              className="rounded-md bg-violet-100 px-2 py-1 text-sm font-semibold text-violet-700"
-            >
-              {skill.name}
-            </div>
+            <Tag key={index}>{skill.name}</Tag>
           ))}
         </div>
         <CustomPortableText value={data.description} />
