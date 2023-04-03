@@ -45,16 +45,16 @@ export async function Profile() {
             user interfaces.
           </p>
           <div className="flex flex-wrap gap-2">
-            <Tag className="flex w-fit items-center gap-2">
+            <Tag className="flex w-fit items-center gap-2 bg-violet-50/50">
               <MapPin className="w-[1.2em]" />
               <span>{data.location}</span>
             </Tag>
-            <Tag className="flex w-fit items-center gap-2">
+            <Tag className="flex w-fit items-center gap-2 bg-violet-50/50">
               <Laptop className="w-[1.2em]" />
               <span>{data.workPreference}</span>
             </Tag>
             <a href={`mailto:${data.email}`}>
-              <Tag className="flex w-fit items-center gap-2">
+              <Tag className="flex w-fit items-center gap-2 bg-violet-50/50">
                 <Mail className="w-[1.2em]" />
                 <span>{data.email}</span>
                 <ExternalLink className="w-[1.15em]" />
